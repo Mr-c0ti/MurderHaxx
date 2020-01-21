@@ -405,11 +405,11 @@ local typeName = tostring(a.UserInputType.Name);
 if (a.UserInputType ~= Enum.UserInputType.Keyboard and (not allowed[a.UserInputType.Name])) or (a.KeyCode and (not banned[a.KeyCode.Name])) then
 	local name = (a.UserInputType ~= Enum.UserInputType.Keyboard and a.UserInputType.Name or a.KeyCode.Name);
 	TPbind = (a).KeyCode;
-    notify("Keybind Updated [TP]","New key bind for teleport is: "..name,3);         
+    notify("Keybind Updated [TP]","New key bind for teleport is: "..name,1);         
 else
     if (TPbind) then
         local name = TPbind.Name
-    	notify("Keybind Updated [TP]","New key bind for teleport is: "..name,3);  
+    	notify("Keybind Updated [TP]","New key bind for teleport is: "..name,1);  
     end
 end
 wait(0.1)  
