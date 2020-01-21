@@ -398,9 +398,9 @@ game:GetService("Players").LocalPlayer.Chatted:Connect(function(msg)
 	if string.sub(msg, 1, 10):lower() == ("/e bind tp") then
 			binding = true
 print('Begin binding...')
-wait(1)
-notify("Binding [TP]","Press a key to bind to teleport...")
+notify("Binding [TP]","Press a key in less than 3s to bind to teleport...")
 local a, b = game:GetService('UserInputService').InputBegan:wait(1);
+wait(3)
 local name = tostring(a.KeyCode.Name);
 local typeName = tostring(a.UserInputType.Name);
 if (a.UserInputType ~= Enum.UserInputType.Keyboard and (not allowed[a.UserInputType.Name])) or (a.KeyCode and (not banned[a.KeyCode.Name])) then
@@ -409,6 +409,7 @@ if (a.UserInputType ~= Enum.UserInputType.Keyboard and (not allowed[a.UserInputT
     notify("Keybind Updated [TP]","New key bind for teleport is: "..name,1);         
 else
     if (TPbind) then
+		TPbind = (a).KeyCode;
         local name = TPbind.Name
     	notify("Keybind Updated [TP]","New key bind for teleport is: "..name,1);  
     end
