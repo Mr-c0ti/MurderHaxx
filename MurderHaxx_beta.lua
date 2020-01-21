@@ -398,6 +398,7 @@ game:GetService("Players").LocalPlayer.Chatted:Connect(function(msg)
 	if string.sub(msg, 1, 10):lower() == ("/e bind tp") then
 			binding = true
 print('Begin binding...')
+wait(1)
 notify("Binding [TP]","Press a key to bind to teleport...")
 local a, b = game:GetService('UserInputService').InputBegan:wait(1);
 local name = tostring(a.KeyCode.Name);
