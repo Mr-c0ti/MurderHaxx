@@ -9,7 +9,6 @@ local isEveryoneOldName = true
 local isEveryoneAlive = true
 local isDown = false
 local isUp = false
-local flMurF = true
 local binding = false
 local TPbind = Enum.KeyCode.Z
 local PARENT
@@ -54,7 +53,7 @@ function MurdererFind()
 		MurderNoti:TweenPosition(UDim2.new(1, MurderNoti.Position.X.Offset, 1, -0), "InOut", "Quart", 0.5, true, nil)
 		wait(0.5)
 		MurderNoti:TweenPosition(UDim2.new(1, MurderNoti.Position.X.Offset, 1, -100), "InOut", "Quart", 0.5, true, nil)
-		while MurdererHunt and wait(0.1) do
+		while MurdererHunt and wait(0.01) do
 			--print('Finding murderer')
         	for i, v in pairs(game:GetService("Players"):GetPlayers()) do
 				--print("Checking player: "..tostring(v))
@@ -329,13 +328,8 @@ function onKeyPress(inputObject, gameProcessedEvent)
     elseif inputObject.KeyCode == Enum.KeyCode.F then
 		MurdererHunt = not MurdererHunt
 		if MurdererHunt then
-			if flMurF then
-				MurdererFind()
-				flMurF = false
-			else
-				MurderNoti:TweenPosition(UDim2.new(1, MurderNoti.Position.X.Offset, 1, -100), "InOut", "Quart", 0.5, true, nil)
-			end
 			notify("Module enabled","Murderer Finder Enabled",0.5)
+			MurdererFind()
 		else
 			MurderNoti:TweenPosition(UDim2.new(1, MurderNoti.Position.X.Offset, 1, -0), "InOut", "Quart", 0.5, true, nil)
 			notify("Module disabled","Murderer Finder Disabled",0.5)
@@ -343,13 +337,13 @@ function onKeyPress(inputObject, gameProcessedEvent)
 	elseif inputObject.KeyCode == Enum.KeyCode.T then
 		teletotop = not teletotop
 		if teletotop then
+			notify("Module enabled","Bystander God [Experimental] enabled",0.5)
 			game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position.X,game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position.Y+300,game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position.Z))
 			wait(0.01)
 			game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Anchored = true
 			isDown = false
 			isUp = true
 			preventBugTp()
-			notify("Module enabled","Bystander God [Experimental] enabled",0.5)
 		else
 			game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position.X,game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position.Y-299,game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position.Z))
 			wait(0.01)
@@ -361,13 +355,13 @@ function onKeyPress(inputObject, gameProcessedEvent)
     elseif inputObject.KeyCode == Enum.KeyCode.G then
 		isESPing = not isESPing
 		if isESPing then
+			notify("Module enabled","ESP [IY FE] enabled",0.5)
 			ESPenabled = true
 			for i,v in pairs(game:GetService("Players"):GetChildren()) do
 				if v.ClassName == "Player" and v.Name ~= game:GetService("Players").LocalPlayer.Name and v.Status.Alive.Value then
 					ESP(v)
 				end
 			end
-			notify("Module enabled","ESP [IY FE] enabled",0.5)
 			refreshESP()
 		else
 			ESPenabled = false
@@ -401,12 +395,11 @@ local allowed = {
     MouseButton2 = true;
 }  
 game:GetService("Players").LocalPlayer.Chatted:Connect(function(msg)
-	if string.sub(msg, 1, 8):lower() == ("/e bind ") then -- From 8...
-		if string.sub(msg,8,10):lower() == "tp" then
+	if string.sub(msg, 1, 10):lower() == ("/e bind tp") then
 			binding = true
 print('Begin binding...')
 notify("Binding [TP]","Press a key to bind to teleport...")
-local a, b = game:GetService('UserInputService').InputBegan:wait();
+local a, b = game:GetService('UserInputService').InputBegan:wait(1);
 local name = tostring(a.KeyCode.Name);
 local typeName = tostring(a.UserInputType.Name);
 if (a.UserInputType ~= Enum.UserInputType.Keyboard and (not allowed[a.UserInputType.Name])) or (a.KeyCode and (not banned[a.KeyCode.Name])) then
@@ -421,6 +414,5 @@ else
 end
 wait(0.1)  
 binding = false;
-		end
 	end
 end)
