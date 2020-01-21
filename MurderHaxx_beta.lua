@@ -293,7 +293,7 @@ end
 -- Capture key
 function onKeyPress(inputObject, gameProcessedEvent)
 	if not binding then
-		if inputObject.KeyCode == Enum.KeyCode.Z then
+		if inputObject.KeyCode == TPbind then
         pcall(function()
             if (randomPlayer.Character:WaitForChild('Humanoid').Health ~= 0) and (randomPlayer ~= game:GetService("Players").LocalPlayer) and (randomPlayer ~= nil) then
                 if randomPlayer.Character ~= nil then
