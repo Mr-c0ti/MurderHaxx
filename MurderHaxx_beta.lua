@@ -3,7 +3,6 @@
 local randomPlayer = nil
 local tpmode = "rnd"
 local MurdererHunt = false
-local ftMH = true
 local teletotop = false
 local ESPenabled = false
 local isESPing = false
@@ -55,7 +54,7 @@ function MurdererFind()
 		MurderNoti:TweenPosition(UDim2.new(1, MurderNoti.Position.X.Offset, 1, -0), "InOut", "Quart", 0.5, true, nil)
 		wait(0.5)
 		MurderNoti:TweenPosition(UDim2.new(1, MurderNoti.Position.X.Offset, 1, -100), "InOut", "Quart", 0.5, true, nil)
-		while wait(0.01) do
+		while MurdererHunt and wait(0.1) do
 			--print('Finding murderer')
         	for i, v in pairs(game:GetService("Players"):GetPlayers()) do
 				--print("Checking player: "..tostring(v))
@@ -339,12 +338,7 @@ function onKeyPress(inputObject, gameProcessedEvent)
 		MurdererHunt = not MurdererHunt
 		if MurdererHunt then
 			notify("Module enabled","Murderer Finder Enabled",0.5)
-			if ftMH then
-			ftMH = false
 			MurdererFind()
-			else
-				MurderNoti:TweenPosition(UDim2.new(1, MurderNoti.Position.X.Offset, 1, -100), "InOut", "Quart", 0.5, true, nil)
-			end
 		else
 			MurderNoti:TweenPosition(UDim2.new(1, MurderNoti.Position.X.Offset, 1, -0), "InOut", "Quart", 0.5, true, nil)
 			notify("Module disabled","Murderer Finder Disabled",0.5)
@@ -445,3 +439,4 @@ game:GetService("Players").LocalPlayer.Chatted:Connect(function(msg)
 		game:GetService("Players").LocalPlayer.CameraMode = "LockFirstPerson"
 	end
 end)
+notify("MurderHaxx Loaded","Enjoy this script :P"..string.char(10).."Made by TreTrauIT",5)
