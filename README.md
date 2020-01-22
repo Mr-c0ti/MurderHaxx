@@ -10,3 +10,6 @@ This will work in any exploit except for WeAreDevs API (protected call XD)
 + Bystander God (Key: T) [Use before hunter found you in 5 secs or it won't work]
 + ESP (By Infinite Yield FE) (Key: G)
 + TP to player (Key: Z) - Change Target (Random mode only) (Key: R)
++ Bring All Head (Key: V) [Experimental]
++ Bring Murderer Head (Key: C) [Experimental]
++ Collect Loots (Key: H)
