@@ -14,6 +14,7 @@ local isEveryoneAlive = true
 local isDown = false
 local isUp = false
 local binding = false
+local isCollecting = false
 local TPbind = Enum.KeyCode.Z
 local PARENT
 if game:GetService("CoreGui"):FindFirstChild('RobloxGui') then
@@ -464,17 +465,27 @@ function onKeyPress(inputObject, gameProcessedEvent)
 			end
 			end
 		elseif inputObject.KeyCode == Enum.KeyCode.H then
+			if not isCollecting then
+			isCollecting = true
+			notify("Auto Loot Collect Started","Please wait for loot collect to finish, when it finish it'll show a notify.",3)
 			local pos = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+			while tonumber(game:GetService("Players").LocalPlayer.PlayerGui.Stuff.HPLoot.L00T.Text) < 5 do
+			wait()
 			for i,v in pairs(game.Workspace.Debris.Props:GetChildren()) do
-			if v:FindFirstChild("Green") ~= nil and tonumber(game:GetService("Players").LocalPlayer.PlayerGui.Stuff.HPLoot.L00T.Text) <= 5 then
+			if v:FindFirstChild("Green") ~= nil and tonumber(game:GetService("Players").LocalPlayer.PlayerGui.Stuff.HPLoot.L00T.Text) < 5 then
 			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame
 			wait(0.5)
 			local Event = game:GetService("ReplicatedStorage").Events.Loot
 			Event:FireServer(v)
 			wait(0.5)
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = pos
+			end
 			end
 			end
 			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = pos
+			isCollecting = false
+			notify("Auto Loot Collect Done","Done, enjoy ur big peepee",1.5)
+			end
 	end
 	end
 end
