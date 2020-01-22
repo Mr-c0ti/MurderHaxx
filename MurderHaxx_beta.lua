@@ -466,7 +466,7 @@ function onKeyPress(inputObject, gameProcessedEvent)
 		elseif inputObject.KeyCode == Enum.KeyCode.H then
 			local pos = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
 			for i,v in pairs(game.Workspace.Debris.Props:GetChildren()) do
-			if v:FindFirstChild("Green") ~= nil then
+			if v:FindFirstChild("Green") ~= nil or tonumber(game:GetService("Players").LocalPlayer.PlayerGui.Stuff.HPLoot.L00T.Text) <= 5 then
 			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame
 			wait(0.5)
 			local Event = game:GetService("ReplicatedStorage").Events.Loot
