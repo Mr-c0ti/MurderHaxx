@@ -4,6 +4,7 @@ local randomPlayer = nil
 local tpmode = "rnd"
 local MurdererHunt = false
 local tpMurderHead = false
+local originPos = nil
 local tpAllHead = false
 local teletotop = false
 local ESPenabled = false
@@ -212,10 +213,29 @@ wait()
 end
 teletotop = false
 if (not isDown) then
-game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position.X,game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position.Y-299,game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position.Z))
-wait(0.01)
-game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Anchored = false
+game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = originPos
 isUp = false
+end
+end
+function closeAtEnd()
+while (game:GetService("Players").LocalPlayer.PlayerGui.Stuff.ScoreBoard.Visible == false) do
+wait()
+end
+notify("Module disabled","TP Murderer head disabled",0.5)
+tpMurderHead = false
+wait(0.5)
+notify("Module disabled","TP All head disabled",0.5)
+tpAllHead = false
+local player = game.Players:GetChildren()
+for i = 1, #player do
+if player[i].Name ~= game.Players.LocalPlayer.Name then
+local part = player[i].Character.Head
+part.Transparency = 0
+part.Material = "Neon"
+part.CanCollide = false
+part.Anchored = false
+part.Position = player[i].Character.Torso.Position + Vector3.new(0,1,0)
+end
 end
 end
 -- Notify function
@@ -224,11 +244,11 @@ local Notification = Instance.new("Frame")
 local Title_2 = Instance.new("TextLabel")
 local Text_2 = Instance.new("TextLabel")
 function randomString()
-	math.randomseed(os.time())
+	math.randomseed(time())
 	local length = math.random(10,20)
 	local array = {}
 	for i = 1, length do
-		math.randomseed(os.time())
+		math.randomseed(time())
 		array[i] = string.char(math.random(32, 126))
 	end
 	return table.concat(array)
@@ -311,7 +331,7 @@ function onKeyPress(inputObject, gameProcessedEvent)
                 print('Changing Target')
                 local oldTarget = randomPlayer
         		while (randomPlayer == oldTarget or randomPlayer == game:GetService("Players").LocalPlayer or (not randomPlayer.Status.Alive.Value)) and wait() do
-            		math.randomseed(os.time())
+            		math.randomseed(time())
             		randomPlayer = game:GetService("Players"):GetPlayers()[math.random(1,#game:GetService("Players"):GetPlayers())]
         		end
                 print("New target: "..tostring(randomPlayer))
@@ -328,10 +348,10 @@ function onKeyPress(inputObject, gameProcessedEvent)
     elseif inputObject.KeyCode == Enum.KeyCode.R then
         print('Changing Target')
         local oldTarget = randomPlayer
-        math.randomseed(os.time())
+        math.randomseed(time())
         randomPlayer = game:GetService("Players"):GetPlayers()[math.random(1,#game:GetService("Players"):GetPlayers())]
         while (randomPlayer == oldTarget or randomPlayer == game:GetService("Players").LocalPlayer or (not randomPlayer.Status.Alive.Value)) and wait() do
-            math.randomseed(os.time())
+            math.randomseed(time())
             randomPlayer = game:GetService("Players"):GetPlayers()[math.random(1,#game:GetService("Players"):GetPlayers())]
         end
         print("New target: "..tostring(randomPlayer))
@@ -349,16 +369,13 @@ function onKeyPress(inputObject, gameProcessedEvent)
 		teletotop = not teletotop
 		if teletotop then
 			notify("Module enabled","Bystander God [Experimental] enabled",0.5)
+			originPos = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame
 			game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position.X,game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position.Y+300,game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position.Z))
-			wait(0.01)
-			game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Anchored = true
 			isDown = false
 			isUp = true
 			preventBugTp()
 		else
-			game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position.X,game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position.Y-299,game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position.Z))
-			wait(0.01)
-			game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Anchored = false
+			game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = originPos
 			isDown = true
 			isUp = false
 			notify("Module disabled","Bystander God [Experimental] disabled",0.5)
@@ -401,6 +418,7 @@ function onKeyPress(inputObject, gameProcessedEvent)
             part.Position = game.Players.LocalPlayer.Character.HumanoidRootPart.Position + Vector3.new(3,0,3)
         	end
 			end
+								closeAtEnd()
 			else
 			notify("Module disabled","TP All Head disabled",0.5)
 			local player = game.Players:GetChildren()
@@ -409,8 +427,9 @@ function onKeyPress(inputObject, gameProcessedEvent)
             local part = player[i].Character.Head
             part.Transparency = 0
             part.Material = "Neon"
-            part.CanCollide = true
+            part.CanCollide = false
             part.Anchored = false
+			part.Position = player[i].Character.Torso.Position + Vector3.new(0,1,0)
 			end
 			end
 			end
@@ -420,14 +439,16 @@ function onKeyPress(inputObject, gameProcessedEvent)
 			notify("Module enabled","TP Murderer head enabled",0.5)
 				for i, v in pairs(game:GetService("Players"):GetPlayers()) do
             		if (v.Status.Role.Value == "Murderer") then
-                		            local part = v.Character.Head
+            local part = v.Character.Head
             part.Transparency = 0
             part.Material = "Neon"
-            part.CanCollide = true
+            part.CanCollide = false
             part.Anchored = true
+			print(part.Position)
 			part.Position = game.Players.LocalPlayer.Character.HumanoidRootPart.Position + Vector3.new(3,0,3)
             		end
         		end
+				closeAtEnd()
 			else
 			notify("Module disabled","TP Murderer head disabled",0.5)
 			local player = game.Players:GetChildren()
@@ -436,11 +457,24 @@ function onKeyPress(inputObject, gameProcessedEvent)
             local part = player[i].Character.Head
             part.Transparency = 0
             part.Material = "Neon"
-            part.CanCollide = true
+            part.CanCollide = false
             part.Anchored = false
+			part.Position = player[i].Character.Torso.Position + Vector3.new(0,1,0)
 			end
 			end
 			end
+		elseif inputObject.KeyCode == Enum.KeyCode.H then
+			local pos = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+			for i,v in pairs(game.Workspace.Debris.Props:GetChildren()) do
+			if v:FindFirstChild("Green") ~= nil then
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame
+			wait(0.5)
+			local Event = game:GetService("ReplicatedStorage").Events.Loot
+			Event:FireServer(v)
+			wait(0.5)
+			end
+			end
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = pos
 	end
 	end
 end
