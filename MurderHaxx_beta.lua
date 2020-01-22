@@ -1,3 +1,4 @@
+local ver = "b202001230125"
 -- MurderHaxx by TreTrauIT
 -- Beta.
 local randomPlayer = nil
@@ -541,4 +542,4 @@ game:GetService("Players").LocalPlayer.Chatted:Connect(function(msg)
 		game:GetService("Players").LocalPlayer.CameraMode = "LockFirstPerson"
 	end
 end)
-notify("MurderHaxx Loaded","Enjoy this script :P"..string.char(10).."Made by TreTrauIT",5)
+notify("MurderHaxx Loaded","Enjoy this script :P"..string.char(10).."Made by TreTrauIT"..string.char(10).."Current version:"..ver,5)
