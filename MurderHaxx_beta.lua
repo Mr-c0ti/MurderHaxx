@@ -3,6 +3,8 @@
 local randomPlayer = nil
 local tpmode = "rnd"
 local MurdererHunt = false
+local tpMurderHead = false
+local tpAllHead = false
 local teletotop = false
 local ESPenabled = false
 local isESPing = false
@@ -384,6 +386,61 @@ function onKeyPress(inputObject, gameProcessedEvent)
 			end
 			notify("Module disabled","ESP [IY FE] disabled",0.5)
 		end
+		    elseif inputObject.KeyCode == Enum.KeyCode.V then
+			tpAllHead = not tpAllHead
+			if tpAllHead then
+			notify("Module enabled","TP All Head enabled",0.5)
+			local player = game.Players:GetChildren()
+    		for i = 1, #player do
+        	if player[i].Name ~= game.Players.LocalPlayer.Name then
+            local part = player[i].Character.Head
+            part.Transparency = 0
+            part.Material = "Neon"
+            part.CanCollide = false
+            part.Anchored = true
+            part.Position = game.Players.LocalPlayer.Character.HumanoidRootPart.Position + Vector3.new(3,0,3)
+        	end
+			end
+			else
+			notify("Module disabled","TP All Head disabled",0.5)
+			local player = game.Players:GetChildren()
+    		for i = 1, #player do
+        	if player[i].Name ~= game.Players.LocalPlayer.Name then
+            local part = player[i].Character.Head
+            part.Transparency = 0
+            part.Material = "Neon"
+            part.CanCollide = true
+            part.Anchored = false
+			end
+			end
+			end
+		elseif inputObject.KeyCode == Enum.KeyCode.B then
+			tpMurderHead = not tpMurderHead
+			if tpMurderHead then
+			notify("Module enabled","TP Murderer head enabled",0.5)
+				for i, v in pairs(game:GetService("Players"):GetPlayers()) do
+            		if (v.Status.Role.Value == "Murderer") then
+                		            local part = v.Character.Head
+            part.Transparency = 0
+            part.Material = "Neon"
+            part.CanCollide = true
+            part.Anchored = true
+			part.Position = game.Players.LocalPlayer.Character.HumanoidRootPart.Position + Vector3.new(3,0,3)
+            		end
+        		end
+			else
+			notify("Module disabled","TP Murderer head disabled",0.5)
+			local player = game.Players:GetChildren()
+    		for i = 1, #player do
+        	if player[i].Name ~= game.Players.LocalPlayer.Name then
+            local part = player[i].Character.Head
+            part.Transparency = 0
+            part.Material = "Neon"
+            part.CanCollide = true
+            part.Anchored = false
+			end
+			end
+			end
 	end
 	end
 end
