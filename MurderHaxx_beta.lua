@@ -414,7 +414,7 @@ function onKeyPress(inputObject, gameProcessedEvent)
 			end
 			end
 			end
-		elseif inputObject.KeyCode == Enum.KeyCode.B then
+		elseif inputObject.KeyCode == Enum.KeyCode.C then
 			tpMurderHead = not tpMurderHead
 			if tpMurderHead then
 			notify("Module enabled","TP Murderer head enabled",0.5)
