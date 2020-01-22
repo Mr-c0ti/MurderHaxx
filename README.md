@@ -1,6 +1,6 @@
 # MurderHaxx
 A script for https://www.roblox.com/games/4572253581/MURDER
-+Script:
++ Script:
 ```
 loadstring(game:HttpGet("https://raw.githubusercontent.com/teppyboy/MurderHaxx/master/MurderHaxx_beta.lua",true))()
 ```
