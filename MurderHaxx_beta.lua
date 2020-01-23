@@ -1,4 +1,4 @@
-local ver = "b202001232233"
+local ver = "b202001232241"
 -- MurderHaxx by TreTrauIT
 -- Beta.
 local randomPlayer = nil
@@ -488,6 +488,7 @@ function onKeyPress(inputObject, gameProcessedEvent)
 			end
 			end
 			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = pos
+			iAmCollecting = false
 			isCollecting = false
 			notify("Auto Loot Collect Done","Done, enjoy ur big peepee",1.5)
 			end
