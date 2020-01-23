@@ -6,12 +6,13 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/teppyboy/MurderHaxx/m
 ```
 This will work in any exploit except for WeAreDevs API (protected call XD)
 ## Features:
++ Updated for Latest Murder (2020/01/23)
 + Find/Unfind Murderer (Key: E)
 + Bystander God/Ungod (Key: T) [Use before hunter found you in 5 secs or it won't work]
 + ESP/UnESP (By Infinite Yield FE) (Key: G)
 + TP to player (Key: Z) - Change Target (Random mode only) (Key: R)
-+ Bring All Head (Key: V) [Experimental]
-+ Bring Murderer Head (Key: C) [Experimental]
++ Bring All Head (Key: V)
++ Bring Murderer Head (Key: C)
 + Collect Loots (Key: H)
 ### Commands:
 + /e bindmgr - Open Bind Manager (NOT WORKING ATM)
@@ -19,8 +20,13 @@ This will work in any exploit except for WeAreDevs API (protected call XD)
 + /e tpmode rnd - Switch teleport mode to random player
 + /e camera tps - Switch camera to TPS (NOT WORKING)
 + /e camera fps - Switch camera to FPS (NOT WORKING)
+#### Bugs:
++ When u're bystander with a gun, shot murderer head will rarely work (walk around it and shoot it maybe can work)
 #### Changelog:
 ```
+b202001231745:
++ Fixed Bring All Head and Bring Murderer Head, should be stable now!
++ Collect Loots fixed for new Update
 b202001230126:
 + Modified tp loot function for more stable
 + Added changelog
