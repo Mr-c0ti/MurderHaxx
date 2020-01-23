@@ -1,4 +1,4 @@
-local ver = "b202001232241"
+local ver = "b202001232316"
 -- MurderHaxx by TreTrauIT
 -- Beta.
 local randomPlayer = nil
@@ -474,6 +474,7 @@ function onKeyPress(inputObject, gameProcessedEvent)
 			isCollecting = true
 			notify("Auto Loot Collect Started","Please wait for loot collect to finish, when it finish it'll show a notify.",3)
 			local function collectItem()
+			closeAtEnd()
 			local pos = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame
 			iAmCollecting = true
 			while game:GetService("Players").LocalPlayer.PlayerGui.Stuff.HPLoot.Loot.L00T.Text ~= "5" and iAmCollecting and wait() do
@@ -493,7 +494,6 @@ function onKeyPress(inputObject, gameProcessedEvent)
 			notify("Auto Loot Collect Done","Done, enjoy ur big peepee",1.5)
 			end
 			collectItem()
-			closeAtEnd()
 			end
 	end
 	end
