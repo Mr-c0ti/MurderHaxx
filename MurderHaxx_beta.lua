@@ -1,4 +1,4 @@
-local ver = "b202001231745"
+local ver = "b202001232201"
 -- MurderHaxx by TreTrauIT
 -- Beta.
 local randomPlayer = nil
@@ -247,11 +247,11 @@ local Notification = Instance.new("Frame")
 local Title_2 = Instance.new("TextLabel")
 local Text_2 = Instance.new("TextLabel")
 function randomString()
-	math.randomseed(time())
+	math.randomseed(os.time())
 	local length = math.random(10,20)
 	local array = {}
 	for i = 1, length do
-		math.randomseed(time())
+		math.randomseed(os.time())
 		array[i] = string.char(math.random(32, 126))
 	end
 	return table.concat(array)
@@ -334,7 +334,7 @@ function onKeyPress(inputObject, gameProcessedEvent)
                 print('Changing Target')
                 local oldTarget = randomPlayer
         		while (randomPlayer == oldTarget or randomPlayer == game:GetService("Players").LocalPlayer or (not randomPlayer.Status.Alive.Value)) and wait() do
-            		math.randomseed(time())
+            		math.randomseed(os.time())
             		randomPlayer = game:GetService("Players"):GetPlayers()[math.random(1,#game:GetService("Players"):GetPlayers())]
         		end
                 print("New target: "..tostring(randomPlayer))
@@ -351,10 +351,10 @@ function onKeyPress(inputObject, gameProcessedEvent)
     elseif inputObject.KeyCode == Enum.KeyCode.R then
         print('Changing Target')
         local oldTarget = randomPlayer
-        math.randomseed(time())
+        math.randomseed(os.time())
         randomPlayer = game:GetService("Players"):GetPlayers()[math.random(1,#game:GetService("Players"):GetPlayers())]
         while (randomPlayer == oldTarget or randomPlayer == game:GetService("Players").LocalPlayer or (not randomPlayer.Status.Alive.Value)) and wait() do
-            math.randomseed(time())
+            math.randomseed(os.time())
             randomPlayer = game:GetService("Players"):GetPlayers()[math.random(1,#game:GetService("Players"):GetPlayers())]
         end
         print("New target: "..tostring(randomPlayer))
