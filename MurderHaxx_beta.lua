@@ -1,4 +1,4 @@
-local ver = "b202001230125"
+local ver = "b202001231745"
 -- MurderHaxx by TreTrauIT
 -- Beta.
 local randomPlayer = nil
@@ -16,6 +16,7 @@ local isDown = false
 local isUp = false
 local binding = false
 local isCollecting = false
+local espLoopFunc = nil
 local TPbind = Enum.KeyCode.Z
 local PARENT
 if game:GetService("CoreGui"):FindFirstChild('RobloxGui') then
@@ -101,7 +102,7 @@ function ESP(plr)
 					a.Transparency = 0.7
 				end
 			end
-            if plr.Character and plr.Character:FindFirstChild('Head') then
+            if plr.Character and plr.Character:FindFirstChild("Head") then
 				local BillboardGui = Instance.new("BillboardGui", ESPholder)
 				local TextLabel = Instance.new("TextLabel")
 				BillboardGui.Adornee = plr.Character.Head
@@ -228,17 +229,17 @@ tpMurderHead = false
 wait(0.5)
 notify("Module disabled","TP All head disabled",0.5)
 tpAllHead = false
-local player = game.Players:GetChildren()
-for i = 1, #player do
-if player[i].Name ~= game.Players.LocalPlayer.Name then
-local part = player[i].Character.Head
-part.Transparency = 0
-part.Material = "Neon"
-part.CanCollide = false
-part.Anchored = false
-part.Position = player[i].Character.Torso.Position + Vector3.new(0,1,0)
-end
-end
+			local player = game.Players:GetChildren()
+    		for i = 1, #player do
+        	if player[i].Name ~= game.Players.LocalPlayer.Name then
+            local part = player[i].Character.Head
+            part.Transparency = 0
+            part.Material = "Neon"
+            part.CanCollide = false
+            part.Anchored = false
+			part.Position = player[i].Character.HumanoidRootPart.Position + Vector3.new(0,1,0)
+			end
+			end
 end
 -- Notify function
 local notifyCount = 0
@@ -431,7 +432,7 @@ function onKeyPress(inputObject, gameProcessedEvent)
             part.Material = "Neon"
             part.CanCollide = false
             part.Anchored = false
-			part.Position = player[i].Character.Torso.Position + Vector3.new(0,1,0)
+			part.Position = player[i].Character.HumanoidRootPart.Position + Vector3.new(0,1,0)
 			end
 			end
 			end
@@ -461,7 +462,7 @@ function onKeyPress(inputObject, gameProcessedEvent)
             part.Material = "Neon"
             part.CanCollide = false
             part.Anchored = false
-			part.Position = player[i].Character.Torso.Position + Vector3.new(0,1,0)
+			part.Position = player[i].Character.HumanoidRootPart.Position + Vector3.new(0,1,0)
 			end
 			end
 			end
@@ -469,15 +470,14 @@ function onKeyPress(inputObject, gameProcessedEvent)
 			if not isCollecting then
 			isCollecting = true
 			notify("Auto Loot Collect Started","Please wait for loot collect to finish, when it finish it'll show a notify.",3)
-			local pos = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
-			while tonumber(game:GetService("Players").LocalPlayer.PlayerGui.Stuff.HPLoot.L00T.Text) < 5 do
-			wait()
-			for i,v in pairs(game.Workspace.Debris.Props:GetChildren()) do
-			if v:FindFirstChild("Green") ~= nil and tonumber(game:GetService("Players").LocalPlayer.PlayerGui.Stuff.HPLoot.L00T.Text) < 5 then
+			pcall(function()
+			local pos = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame
+			while game:GetService("Players").LocalPlayer.PlayerGui.Stuff.HPLoot.Loot.L00T.Text ~= "5" and wait() do
+			for i,v in pairs(game:GetService("Workspace").Debris.Props:GetChildren()) do
+			if v:FindFirstChild("Green") ~= nil and game:GetService("Players").LocalPlayer.PlayerGui.Stuff.HPLoot.Loot.L00T.Text ~= "5" then
 			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame
 			wait(0.5)
-			local Event = game:GetService("ReplicatedStorage").Events.Loot
-			Event:FireServer(v)
+			game:GetService("ReplicatedStorage").Events.Loot:FireServer(v)
 			wait(0.5)
 			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = pos
 			end
@@ -486,6 +486,7 @@ function onKeyPress(inputObject, gameProcessedEvent)
 			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = pos
 			isCollecting = false
 			notify("Auto Loot Collect Done","Done, enjoy ur big peepee",1.5)
+			end)
 			end
 	end
 	end
@@ -535,7 +536,7 @@ game:GetService("Players").LocalPlayer.Chatted:Connect(function(msg)
 		notify("Teleport mode updated","Teleport mode was changed to random player",2)
 	elseif string.sub(msg, 1, 18):lower() == ("/e tpmode murderer") then
 		tpmode = "murderer"
-		notify("Teleport mode updated","Teleport mode was changed to random player",2)
+		notify("Teleport mode updated","Teleport mode was changed to murderer",2)
 	elseif string.sub(msg, 1, 13):lower() == ("/e camera tps") then
 		game:GetService("Players").LocalPlayer.CameraMode = "Classic"
 	elseif string.sub(msg, 1, 13):lower() == ("/e camera fps") then
