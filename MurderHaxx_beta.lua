@@ -470,7 +470,7 @@ function onKeyPress(inputObject, gameProcessedEvent)
 			if not isCollecting then
 			isCollecting = true
 			notify("Auto Loot Collect Started","Please wait for loot collect to finish, when it finish it'll show a notify.",3)
-			pcall(function()
+			function collectItem()
 			local pos = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame
 			while game:GetService("Players").LocalPlayer.PlayerGui.Stuff.HPLoot.Loot.L00T.Text ~= "5" and wait() do
 			for i,v in pairs(game:GetService("Workspace").Debris.Props:GetChildren()) do
@@ -486,7 +486,8 @@ function onKeyPress(inputObject, gameProcessedEvent)
 			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = pos
 			isCollecting = false
 			notify("Auto Loot Collect Done","Done, enjoy ur big peepee",1.5)
-			end)
+			end
+			collectItem()
 			end
 	end
 	end
