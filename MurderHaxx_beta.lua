@@ -16,6 +16,7 @@ local isDown = false
 local isUp = false
 local binding = false
 local isCollecting = false
+local iAmCollecting = false
 local espLoopFunc = nil
 local TPbind = Enum.KeyCode.Z
 local PARENT
@@ -241,7 +242,7 @@ tpAllHead = false
 			end
 			end
 notify("Task ended","Auto Loot Collect Closed",0.5)
-isCollecting = false
+iAmCollecting = false
 end
 -- Notify function
 local notifyCount = 0
@@ -474,9 +475,10 @@ function onKeyPress(inputObject, gameProcessedEvent)
 			notify("Auto Loot Collect Started","Please wait for loot collect to finish, when it finish it'll show a notify.",3)
 			local function collectItem()
 			local pos = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame
-			while game:GetService("Players").LocalPlayer.PlayerGui.Stuff.HPLoot.Loot.L00T.Text ~= "5" and isCollecting and wait() do
+			iAmCollecting = true
+			while game:GetService("Players").LocalPlayer.PlayerGui.Stuff.HPLoot.Loot.L00T.Text ~= "5" and iAmCollecting and wait() do
 			for i,v in pairs(game:GetService("Workspace").Debris.Props:GetChildren()) do
-			if v:FindFirstChild("Green") ~= nil and game:GetService("Players").LocalPlayer.PlayerGui.Stuff.HPLoot.Loot.L00T.Text ~= "5" and isCollecting then
+			if v:FindFirstChild("Green") ~= nil and game:GetService("Players").LocalPlayer.PlayerGui.Stuff.HPLoot.Loot.L00T.Text ~= "5" and iAmCollecting then
 			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame
 			wait(0.5)
 			game:GetService("ReplicatedStorage").Events.Loot:FireServer(v)
