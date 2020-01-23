@@ -1,4 +1,4 @@
-local ver = "b202001232201"
+local ver = "b202001232229"
 -- MurderHaxx by TreTrauIT
 -- Beta.
 local randomPlayer = nil
