@@ -1,4 +1,4 @@
-local ver = "b202001232229"
+local ver = "b202001232233"
 -- MurderHaxx by TreTrauIT
 -- Beta.
 local randomPlayer = nil
@@ -237,7 +237,7 @@ tpAllHead = false
             part.Material = "Neon"
             part.CanCollide = false
             part.Anchored = false
-			part.Position = player[i].Character.HumanoidRootPart.Position + Vector3.new(0,1,0)
+			part.Position = player[i].Character.HumanoidRootPart.Position + Vector3.new(0,1.5,0)
 			end
 			end
 notify("Task ended","Auto Loot Collect Closed",0.5)
@@ -434,7 +434,7 @@ function onKeyPress(inputObject, gameProcessedEvent)
             part.Material = "Neon"
             part.CanCollide = false
             part.Anchored = false
-			part.Position = player[i].Character.HumanoidRootPart.Position + Vector3.new(0,1,0)
+			part.Position = player[i].Character.HumanoidRootPart.Position + Vector3.new(0,1.5,0)
 			end
 			end
 			end
@@ -464,14 +464,13 @@ function onKeyPress(inputObject, gameProcessedEvent)
             part.Material = "Neon"
             part.CanCollide = false
             part.Anchored = false
-			part.Position = player[i].Character.HumanoidRootPart.Position + Vector3.new(0,1,0)
+			part.Position = player[i].Character.HumanoidRootPart.Position + Vector3.new(0,1.5,0)
 			end
 			end
 			end
 		elseif inputObject.KeyCode == Enum.KeyCode.H then
 			if not isCollecting then
 			isCollecting = true
-			closeAtEnd()
 			notify("Auto Loot Collect Started","Please wait for loot collect to finish, when it finish it'll show a notify.",3)
 			local function collectItem()
 			local pos = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame
@@ -491,6 +490,7 @@ function onKeyPress(inputObject, gameProcessedEvent)
 			notify("Auto Loot Collect Done","Done, enjoy ur big peepee",1.5)
 			end
 			collectItem()
+			closeAtEnd()
 			end
 	end
 	end
