@@ -1,4 +1,4 @@
-local ver = "b202001252339"
+local ver = "b202001252341"
 -- MurderHaxx by TreTrauIT
 -- Beta.
 local randomPlayer = nil
@@ -474,7 +474,7 @@ function onKeyPress(inputObject, gameProcessedEvent)
 			local pos = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame
 			while tonumber(game:GetService("Players").LocalPlayer.PlayerGui.Stuff.HPLoot.Loot.L00T.Text) < 5 and (game:GetService("Players").LocalPlayer.PlayerGui.Stuff.ScoreBoard.Visible == false) and wait() do
 			for i,v in pairs(game:GetService("Workspace").Debris.Props:GetChildren()) do
-			if v:FindFirstChild("Green") ~= nil and game:GetService("Players").LocalPlayer.PlayerGui.Stuff.HPLoot.Loot.L00T.Text ~= "5" and (game:GetService("Players").LocalPlayer.PlayerGui.Stuff.ScoreBoard.Visible == false) then
+			if v:FindFirstChild("Green") ~= nil and tonumber(game:GetService("Players").LocalPlayer.PlayerGui.Stuff.HPLoot.Loot.L00T.Text) < 5 and (game:GetService("Players").LocalPlayer.PlayerGui.Stuff.ScoreBoard.Visible == false) then
 			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame
 			wait(0.5)
 			game:GetService("ReplicatedStorage").Events.Loot:FireServer(v)
