@@ -1,4 +1,4 @@
-local ver = "b202001252325"
+local ver = "b202001252339"
 -- MurderHaxx by TreTrauIT
 -- Beta.
 local randomPlayer = nil
@@ -441,7 +441,7 @@ function onKeyPress(inputObject, gameProcessedEvent)
 			if tpMurderHead then
 			notify("Module enabled","TP Murderer head enabled",0.5)
 				for i, v in pairs(game:GetService("Players"):GetPlayers()) do
-            		if (v.Status.Role.Value == "Murderer") then
+            		if (v.Status.Role.Value == "Murderer") and v.Name ~= game.Players.LocalPlayer.Name then
             local part = v.Character.Head
             part.Transparency = 0
             part.Material = "Neon"
