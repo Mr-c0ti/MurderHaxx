@@ -21,9 +21,11 @@ This will work in any exploit except for WeAreDevs API (protected call XD)
 + /e camera tps - Switch camera to TPS (NOT WORKING)
 + /e camera fps - Switch camera to FPS (NOT WORKING)
 #### Bugs:
-+ Auto Collect Loot maybe not work...
++ Nothing?
 #### Changelog:
 ```
+b202001252300:
++ Fixed Auto TP Collect Loot function 
 b202001252251:
 + Fixed TP All Head now will only tp victim's head which is alive.
 + Somewhat fixed Auto Collect Loot
