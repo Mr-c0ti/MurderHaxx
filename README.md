@@ -21,7 +21,7 @@ This will work in any exploit except for WeAreDevs API (protected call XD)
 + /e camera tps - Switch camera to TPS (NOT WORKING)
 + /e camera fps - Switch camera to FPS (NOT WORKING)
 #### Bugs:
-+ When u're bystander with a gun, shot murderer head will rarely work (walk around it and shoot it maybe can work)
++ Auto Collect Loot maybe not work...
 #### Changelog:
 ```
 b202001252251:
