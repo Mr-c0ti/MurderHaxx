@@ -24,6 +24,9 @@ This will work in any exploit except for WeAreDevs API (protected call XD)
 + Nothing?
 #### Changelog:
 ```
+b202001252325:
++ Won't trigger function if player is chatting!
++ Improved Auto Collect Loot function
 b202001252300 + b202001252307:
 + Fixed Auto TP Collect Loot function 
 b202001252251:
