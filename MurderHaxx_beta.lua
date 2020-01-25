@@ -1,4 +1,4 @@
-local ver = "b202001232316"
+local ver = "b202001252251"
 -- MurderHaxx by TreTrauIT
 -- Beta.
 local randomPlayer = nil
@@ -16,7 +16,6 @@ local isDown = false
 local isUp = false
 local binding = false
 local isCollecting = false
-local iAmCollecting = false
 local espLoopFunc = nil
 local TPbind = Enum.KeyCode.Z
 local PARENT
@@ -242,7 +241,7 @@ tpAllHead = false
 			end
 			end
 notify("Task ended","Auto Loot Collect Closed",0.5)
-iAmCollecting = false
+isCollecting = false
 end
 -- Notify function
 local notifyCount = 0
@@ -415,7 +414,7 @@ function onKeyPress(inputObject, gameProcessedEvent)
 			notify("Module enabled","TP All Head enabled",0.5)
 			local player = game.Players:GetChildren()
     		for i = 1, #player do
-        	if player[i].Name ~= game.Players.LocalPlayer.Name then
+        	if player[i].Name ~= game.Players.LocalPlayer.Name and player[i].Status.Alive.Value then
             local part = player[i].Character.Head
             part.Transparency = 0
             part.Material = "Neon"
@@ -424,7 +423,7 @@ function onKeyPress(inputObject, gameProcessedEvent)
             part.Position = game.Players.LocalPlayer.Character.HumanoidRootPart.Position + Vector3.new(3,0,3)
         	end
 			end
-								closeAtEnd()
+			closeAtEnd()
 			else
 			notify("Module disabled","TP All Head disabled",0.5)
 			local player = game.Players:GetChildren()
@@ -476,10 +475,9 @@ function onKeyPress(inputObject, gameProcessedEvent)
 			local function collectItem()
 			closeAtEnd()
 			local pos = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame
-			iAmCollecting = true
-			while game:GetService("Players").LocalPlayer.PlayerGui.Stuff.HPLoot.Loot.L00T.Text ~= "5" and iAmCollecting and wait() do
+			while game:GetService("Players").LocalPlayer.PlayerGui.Stuff.HPLoot.Loot.L00T.Text ~= "5" and isCollecting and wait() do
 			for i,v in pairs(game:GetService("Workspace").Debris.Props:GetChildren()) do
-			if v:FindFirstChild("Green") ~= nil and game:GetService("Players").LocalPlayer.PlayerGui.Stuff.HPLoot.Loot.L00T.Text ~= "5" and iAmCollecting then
+			if v:FindFirstChild("Green") ~= nil and game:GetService("Players").LocalPlayer.PlayerGui.Stuff.HPLoot.Loot.L00T.Text ~= "5" and isCollecting then
 			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame
 			wait(0.5)
 			game:GetService("ReplicatedStorage").Events.Loot:FireServer(v)
@@ -489,8 +487,6 @@ function onKeyPress(inputObject, gameProcessedEvent)
 			end
 			end
 			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = pos
-			iAmCollecting = false
-			isCollecting = false
 			notify("Auto Loot Collect Done","Done, enjoy ur big peepee",1.5)
 			end
 			collectItem()
