@@ -24,7 +24,7 @@ This will work in any exploit except for WeAreDevs API (protected call XD)
 + Nothing?
 #### Changelog:
 ```
-b202001252300:
+b202001252300 + b202001252307:
 + Fixed Auto TP Collect Loot function 
 b202001252251:
 + Fixed TP All Head now will only tp victim's head which is alive.
