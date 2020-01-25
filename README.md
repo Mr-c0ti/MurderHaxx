@@ -10,9 +10,9 @@ This will work in any exploit except for WeAreDevs API (protected call XD)
 + Find/Unfind Murderer (Key: E)
 + Bystander God/Ungod (Key: T) [Use before hunter found you in 5 secs or it won't work]
 + ESP/UnESP (By Infinite Yield FE) (Key: G)
-+ TP to player (Key: Z) - Change Target (Random mode only) (Key: R)
++ TP to random player/murderer (Key: Z) - Change Target (Random mode only) (Key: R)
 + Bring All Head (Key: V)
-+ Bring Murderer Head (Key: C)
++ Bring Murderer's (or Murderers' if Double Trouble or Murder Madness) Head (Key: C)
 + Collect Loots (Key: H)
 ### Commands:
 + /e bindmgr - Open Bind Manager (NOT WORKING ATM)
@@ -24,6 +24,9 @@ This will work in any exploit except for WeAreDevs API (protected call XD)
 + Nothing?
 #### Changelog:
 ```
+b202001252341:
++ Fixed an error when you tp murderer head and you're murderer you can't walk and teleport because Anchored.
++ Improved Auto Collect Loot function (again)
 b202001252325:
 + Won't trigger function if player is chatting!
 + Improved Auto Collect Loot function
