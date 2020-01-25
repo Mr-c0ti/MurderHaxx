@@ -1,4 +1,4 @@
-local ver = "b202001252307"
+local ver = "b202001252325"
 -- MurderHaxx by TreTrauIT
 -- Beta.
 local randomPlayer = nil
@@ -318,7 +318,7 @@ function notify(text,text2,length)
 end
 -- Capture key
 function onKeyPress(inputObject, gameProcessedEvent)
-	if not binding then
+	if not binding and not gameProcessedEvent then
 		if inputObject.KeyCode == TPbind then
 			if tpmode == "rnd" then
 				pcall(function()
@@ -472,7 +472,7 @@ function onKeyPress(inputObject, gameProcessedEvent)
 			notify("Auto Loot Collect Started","Please wait for loot collect to finish, when it finish it'll show a notify.",3)
 			local function collectItem()
 			local pos = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame
-			while game:GetService("Players").LocalPlayer.PlayerGui.Stuff.HPLoot.Loot.L00T.Text ~= "5" and (game:GetService("Players").LocalPlayer.PlayerGui.Stuff.ScoreBoard.Visible == false) and wait() do
+			while tonumber(game:GetService("Players").LocalPlayer.PlayerGui.Stuff.HPLoot.Loot.L00T.Text) < 5 and (game:GetService("Players").LocalPlayer.PlayerGui.Stuff.ScoreBoard.Visible == false) and wait() do
 			for i,v in pairs(game:GetService("Workspace").Debris.Props:GetChildren()) do
 			if v:FindFirstChild("Green") ~= nil and game:GetService("Players").LocalPlayer.PlayerGui.Stuff.HPLoot.Loot.L00T.Text ~= "5" and (game:GetService("Players").LocalPlayer.PlayerGui.Stuff.ScoreBoard.Visible == false) then
 			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame
