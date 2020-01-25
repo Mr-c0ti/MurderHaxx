@@ -1,4 +1,4 @@
-local ver = "b202001252300"
+local ver = "b202001252307"
 -- MurderHaxx by TreTrauIT
 -- Beta.
 local randomPlayer = nil
@@ -240,8 +240,6 @@ tpAllHead = false
 			part.Position = player[i].Character.HumanoidRootPart.Position + Vector3.new(0,1.5,0)
 			end
 			end
-notify("Task ended","Auto Loot Collect Closed",0.5)
-isCollecting = false
 end
 -- Notify function
 local notifyCount = 0
@@ -474,9 +472,9 @@ function onKeyPress(inputObject, gameProcessedEvent)
 			notify("Auto Loot Collect Started","Please wait for loot collect to finish, when it finish it'll show a notify.",3)
 			local function collectItem()
 			local pos = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame
-			while game:GetService("Players").LocalPlayer.PlayerGui.Stuff.HPLoot.Loot.L00T.Text ~= "5" and isCollecting and wait() do
+			while game:GetService("Players").LocalPlayer.PlayerGui.Stuff.HPLoot.Loot.L00T.Text ~= "5" and (game:GetService("Players").LocalPlayer.PlayerGui.Stuff.ScoreBoard.Visible == false) and wait() do
 			for i,v in pairs(game:GetService("Workspace").Debris.Props:GetChildren()) do
-			if v:FindFirstChild("Green") ~= nil and game:GetService("Players").LocalPlayer.PlayerGui.Stuff.HPLoot.Loot.L00T.Text ~= "5" and isCollecting then
+			if v:FindFirstChild("Green") ~= nil and game:GetService("Players").LocalPlayer.PlayerGui.Stuff.HPLoot.Loot.L00T.Text ~= "5" and (game:GetService("Players").LocalPlayer.PlayerGui.Stuff.ScoreBoard.Visible == false) then
 			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame
 			wait(0.5)
 			game:GetService("ReplicatedStorage").Events.Loot:FireServer(v)
@@ -486,10 +484,10 @@ function onKeyPress(inputObject, gameProcessedEvent)
 			end
 			end
 			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = pos
+			isCollecting = false
 			notify("Auto Loot Collect Done","Done, enjoy ur big peepee",1.5)
 			end
 			spawn(collectItem())
-			spawn(closeAtEnd())
 			end
 	end
 	end
