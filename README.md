@@ -24,6 +24,9 @@ This will work in any exploit except for WeAreDevs API (protected call XD)
 + When u're bystander with a gun, shot murderer head will rarely work (walk around it and shoot it maybe can work)
 #### Changelog:
 ```
+b202001252251:
++ Fixed TP All Head now will only tp victim's head which is alive.
++ Somewhat fixed Auto Collect Loot
 b202001231745:
 + Fixed Bring All Head and Bring Murderer Head, should be stable now!
 + Collect Loots fixed for new Update
