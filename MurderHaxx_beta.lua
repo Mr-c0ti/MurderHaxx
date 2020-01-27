@@ -1,4 +1,4 @@
-local ver = "b202001252341"
+local ver = "b202001271647"
 -- MurderHaxx by TreTrauIT
 -- Beta.
 local randomPlayer = nil
@@ -471,10 +471,10 @@ function onKeyPress(inputObject, gameProcessedEvent)
 			isCollecting = true
 			notify("Auto Loot Collect Started","Please wait for loot collect to finish, when it finish it'll show a notify.",3)
 			local function collectItem()
-			local pos = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame
 			while tonumber(game:GetService("Players").LocalPlayer.PlayerGui.Stuff.HPLoot.Loot.L00T.Text) < 5 and (game:GetService("Players").LocalPlayer.PlayerGui.Stuff.ScoreBoard.Visible == false) and wait() do
 			for i,v in pairs(game:GetService("Workspace").Debris.Props:GetChildren()) do
 			if v:FindFirstChild("Green") ~= nil and tonumber(game:GetService("Players").LocalPlayer.PlayerGui.Stuff.HPLoot.Loot.L00T.Text) < 5 and (game:GetService("Players").LocalPlayer.PlayerGui.Stuff.ScoreBoard.Visible == false) then
+			local pos = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame
 			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame
 			wait(0.5)
 			game:GetService("ReplicatedStorage").Events.Loot:FireServer(v)
@@ -483,7 +483,6 @@ function onKeyPress(inputObject, gameProcessedEvent)
 			end
 			end
 			end
-			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = pos
 			isCollecting = false
 			notify("Auto Loot Collect Done","Done, enjoy ur big peepee",1.5)
 			end
