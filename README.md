@@ -8,7 +8,7 @@ This will work in any exploit except for WeAreDevs API (protected call XD)
 ## Features:
 + Updated for Latest Murder (2020/01/23)
 + Find/Unfind Murderer (Key: E)
-+ Bystander God/Ungod (Key: T) [Use before hunter found you in 5 secs or it won't work]
++ Bystander God/Ungod (Key: T) [Use before hunter found you in 0.5 secs or it won't work]
 + ESP/UnESP (By Infinite Yield FE) (Key: G)
 + TP to random player/murderer (Key: Z) - Change Target (Random mode only) (Key: R)
 + Bring All Head (Key: V)
@@ -31,6 +31,7 @@ b202001252325:
 + Won't trigger function if player is chatting!
 + Improved Auto Collect Loot function
 b202001252300 + b202001252307:
++ More stable bystander god
 + Fixed Auto TP Collect Loot function 
 b202001252251:
 + Fixed TP All Head now will only tp victim's head which is alive.
