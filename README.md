@@ -24,6 +24,8 @@ This will work in any exploit except for WeAreDevs API (protected call XD)
 + Nothing?
 #### Changelog:
 ```
+b202001271647:
++ Improved auto collect loot
 b202001252341:
 + Fixed an error when you tp murderer head and you're murderer you can't walk and teleport because Anchored.
 + Improved Auto Collect Loot function (again)
