@@ -24,6 +24,8 @@ This will work in any exploit except for WeAreDevs API (protected call XD)
 + Nothing?
 #### Changelog:
 ```
+b202001281454:
++ Somewhat fixed when turn off tp murderer head while tp all head is enabled will turn off both
 b202001271647:
 + Improved auto collect loot
 b202001252341:
