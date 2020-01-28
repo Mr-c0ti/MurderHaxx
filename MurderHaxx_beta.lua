@@ -1,4 +1,4 @@
-local ver = "b202001271647"
+local ver = "b202001281454"
 -- MurderHaxx by TreTrauIT
 -- Beta.
 local randomPlayer = nil
@@ -18,6 +18,7 @@ local binding = false
 local isCollecting = false
 local espLoopFunc = nil
 local TPbind = Enum.KeyCode.Z
+local mname = nil
 local PARENT
 if game:GetService("CoreGui"):FindFirstChild('RobloxGui') then
 	PARENT = game:GetService("CoreGui").RobloxGui
@@ -447,7 +448,7 @@ function onKeyPress(inputObject, gameProcessedEvent)
             part.Material = "Neon"
             part.CanCollide = false
             part.Anchored = true
-			print(part.Position)
+			mname = v.Name
 			part.Position = game.Players.LocalPlayer.Character.HumanoidRootPart.Position + Vector3.new(3,0,3)
             		end
         		end
@@ -456,7 +457,7 @@ function onKeyPress(inputObject, gameProcessedEvent)
 			notify("Module disabled","TP Murderer head disabled",0.5)
 			local player = game.Players:GetChildren()
     		for i = 1, #player do
-        	if player[i].Name ~= game.Players.LocalPlayer.Name then
+        	if player[i].Name ~= game.Players.LocalPlayer.Name and player[i].Name == mname then
             local part = player[i].Character.Head
             part.Transparency = 0
             part.Material = "Neon"
@@ -493,7 +494,7 @@ function onKeyPress(inputObject, gameProcessedEvent)
 end
 game:GetService("UserInputService").InputBegan:connect(onKeyPress)
 game:GetService('RunService').Stepped:connect(function()
-	if teletotop then
+	if teletotop or isCollecting then
 		game:GetService("Players").LocalPlayer.Character.Humanoid:ChangeState(11)
 	end
 end)
