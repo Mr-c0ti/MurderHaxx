@@ -1,7 +1,7 @@
 local ver = "b202001281454"
 -- MurderHaxx by TreTrauIT
 -- Beta.
-local randomPlayer = nil
+local randomPlayer = false
 local tpmode = "rnd"
 local MurdererHunt = false
 local tpMurderHead = false
